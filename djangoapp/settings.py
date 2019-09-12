@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '1n#8e=k7g^mqsp*$unj1#8^gfem=mf#dhrpcp(%@qk6^t9ef3c'
+SECRET_KEY = '($%op7n=zstwt5o7+l1=)t#5g#enk&&(%rxaiuwwt@h$co4ffo'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -31,13 +31,13 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'pizza.apps.PizzaConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'pizza.apps.PizzaConfig',
 ]
 
 MIDDLEWARE = [
