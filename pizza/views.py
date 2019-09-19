@@ -10,3 +10,6 @@ def news(request):
 
 def gallery(request):
     return HttpResponse("<h2>Galeria zdjęć!</h2>")
+
+def kontakt(request):
+    return HttpResponse("<h2>Kontakt z dżunglą!</h2>")
