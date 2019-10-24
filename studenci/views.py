@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from studenci.models import Miasto, Uczelnia
+from django.contrib import messages
 
 
 def index(request):
@@ -17,8 +18,12 @@ def miasta(request):
     if request.method == 'POST':
         nazwa= request.POST.get('nazwa')
         kod= request.POST.get('kod')
-        m = Miasto(nazwa=nazwa, kod=kod)
-        m.save()
+        if len(nazwa.strip()):
+            m = Miasto(nazwa=nazwa, kod=kod)
+            m.save()
+            messages.success(request, "Dane zapisano!")
+        else:
+            messages.error(request, "Błędne dane deb***!")
 
     miasta = Miasto.objects.all()
     kontekst = {
