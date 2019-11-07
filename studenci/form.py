@@ -8,8 +8,20 @@ class StudentLoginForm(forms.Form):
         widget=forms.TextInput()
     )
 class UczelniaForm(forms.Form):
-    login2 = forms.CharField(
+     nazwa = forms.CharField(
         label="Twoja uczelnia:",
         max_length=30,
+        widget=forms.TextInput()
+     )
+
+class MiastoForm(forms.Form):
+    nazwa = forms.CharField(
+        label="Nazwa miasta",
+        max_length=30,
+        widget=forms.TextInput()
+    )
+    kod = forms.CharField(
+        label="Kod pocztowy",
+        max_length=6,
         widget=forms.TextInput()
     )

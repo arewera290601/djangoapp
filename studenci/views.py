@@ -1,10 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from studenci.models import Miasto, Uczelnia
 from django.contrib import messages
 from studenci.form import StudentLoginForm
 from studenci.form import UczelniaForm
-
+from django.urls import reverse
 
 def index(request):
     return HttpResponse("Witaj w aplikacji Studenci!")
@@ -18,17 +18,21 @@ def news(request):
 def miasta(request):
 
     if request.method == 'POST':
-        nazwa= request.POST.get('nazwa')
-        kod= request.POST.get('kod')
-        if len(nazwa.strip()):
-            m = Miasto(nazwa=nazwa, kod=kod)
+        #nazwa= request.POST.get('nazwa')
+        #kod= request.POST.get('kod')
+        form = MiastoForm(request.POST)
+        if form.is_valid():
+            m = Miasto(nazwa=form.cleaned_data['nazwa'], kod=form.cleaned_data['kod'])
             m.save()
             messages.success(request, "Dane zapisano!")
         else:
             messages.error(request, "Błędne dane deb***!")
+    else:
+        form = MiastoForm()
 
     miasta = Miasto.objects.all()
     kontekst = {
+        'form': form,
         'miasta': miasta
     }
     return render(request, 'studenci/miasta.html', kontekst)
@@ -37,18 +41,23 @@ def miasta(request):
 def uczelnia(request):
 
     if request.method == 'POST':
-        nazwa= request.POST.get('nazwa')
-        if len(nazwa.strip()):
-            u = Uczelnia(nazwa=nazwa)
+        form = UczelniaForm(request.POST)
+        if form.is_valid():
+            # print(form.cleaned_data)
+            u = Uczelnia(nazwa=form.cleaned_data['nazwa'])
             u.save()
-            messages.error(request, "Dane zapisano!")
-        else:
-            messages.error(request, "Błędne dane deb***!")
+            messages.success(request, "Dane zapisano!")
+            # przekierowanie
+            return redirect(reverse('studenci:uczelnia'))
+    else:
+        form = UczelniaForm()
 
     uczelnia = Uczelnia.objects.all()
     kontekst = {
+        'form': form,
         'uczelnia': uczelnia
     }
+
     return render(request, 'studenci/uczelnia.html', kontekst)
 
 def login(request):
