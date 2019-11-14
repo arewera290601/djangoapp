@@ -3,17 +3,17 @@ from django.http import HttpResponse
 from studenci.models import Miasto, Uczelnia
 from django.contrib import messages
 from studenci.form import StudentLoginForm
-from studenci.form import UczelniaForm
+from studenci.form import UczelniaForm, MiastoForm
 from django.urls import reverse
 
 def index(request):
-    return HttpResponse("Witaj w aplikacji Studenci!")
-    # return render(request, 'pizza/index.html')
+    #return HttpResponse("Witaj w aplikacji Studenci!")
+    return render(request, 'studenci/index.html')
 
 
 def news(request):
-    return HttpResponse("<h1>Nowości u studentów</h1>")
-    # return render(request, 'pizza/news.html')
+    #return HttpResponse("<h1>Nowości u studentów</h1>")
+    return render(request, 'pizza/news.html')
 
 def miasta(request):
 
