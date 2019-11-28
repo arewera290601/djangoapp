@@ -32,11 +32,12 @@
                     <a href="{% url 'pizza:news' %}" class="dropdom-item">Nowości</a>
                 </div>
             </li>
-              <li class="nav-tem">
-                <a href="{% url 'studenci:miasta' %}" class="nav-link">Miasta</a>
-            </li>
-               <li class="nav-tem">
-                <a href="{% url 'studenci:uczelnia' %}" class="nav-link">Uczelnia</a>
+            <li class="nav-tem dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button">Użytkownicy</a>
+                <div class="dropdown-menu">
+                    <a href="{% url 'users:index' %}" class="dropdom-item">Strona główna</a>
+                    <a href="{% url 'users:rejestruj' %}" class="dropdom-item">Rejestruj</a>
+                </div>
             </li>
 
             </ul>
