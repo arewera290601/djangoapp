@@ -11,7 +11,7 @@ def index(request):
 
 def wyloguj(request):
     logout(request)
-    messages.into(request, "Zostałeś wylogowany!")
+    messages.success(request, "Zostałeś wylogowany!")
     return redirect(reverse('users:index'))
 
 def rejestruj(request):
