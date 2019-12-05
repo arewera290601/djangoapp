@@ -35,8 +35,13 @@
             <li class="nav-tem dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button">Użytkownicy</a>
                 <div class="dropdown-menu">
-                    <a href="{% url 'users:index' %}" class="dropdom-item">Strona główna</a>
-                    <a href="{% url 'users:rejestruj' %}" class="dropdom-item">Rejestruj</a>
+                    <a href="{% url 'users:index' %}" class="dropdom-item">Strona główna</a></br>
+                    {% if not user.is_authenticated %}
+                        <a href="{% url 'users:rejestruj' %}" class="dropdom-item">Rejestruj</a></br>
+                        <a href="{% url 'users:loguj' %}" class="dropdom-item">Logowanie</a></br>
+                    {% else %}
+                         <a href="{% url 'users:wyloguj' %}" class="dropdom-item">Wyloguj</a></br>
+                    {% endif %}
                 </div>
             </li>
 
