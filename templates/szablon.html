@@ -19,8 +19,12 @@
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button">Studenci</a>
                 <div class="dropdown-menu">
                     <a href="{% url 'studenci:index' %}" class="dropdom-item">Strona główna</a></br>
+                    <a href="{% url 'studenci:miasta_lista' %}" class="dropdom-item">Lista miast</a></br>
+                    <a href="{% url 'studenci:miasta_dodaj' %}" class="dropdom-item">Utwórz miasto</a></br>
                     <a href="{% url 'studenci:miasta' %}" class="dropdom-item">Miasta</a> </br>
                     <a href="{% url 'studenci:uczelnia' %}" class="dropdom-item">Uczelnie</a></br>
+                    <a href="{% url 'studenci:uczelnie_lista' %}" class="dropdom-item">Lista Uczelni</a></br>
+                    <a href="{% url 'studenci:uczelnia_dodaj' %}" class="dropdom-item">Utwórz uczelnię</a></br>
                     <a href="{% url 'studenci:login' %}" class="dropdom-item">Logowanie</a></br>
 
                 </div>
@@ -30,6 +34,8 @@
                 <div class="dropdown-menu">
                     <a href="{% url 'pizza:index' %}" class="dropdom-item">Strona główna</a>
                     <a href="{% url 'pizza:news' %}" class="dropdom-item">Nowości</a>
+                    <a href="{% url 'pizza:skladnik_add' %}" class="dropdom-item">Dodaj Składnik</a>
+
                 </div>
             </li>
             <li class="nav-tem dropdown">

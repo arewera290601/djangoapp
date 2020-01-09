@@ -1,0 +1,13 @@
+{% extends 'szablon.html' %}
+
+{% block naglowek %}Uczelnia{% endblock naglowek %}
+
+{% block tresc %}
+
+<h2>Lista uczelni</h2>
+<ol>
+    {% for uczelnia in uczelnia %}
+        <li>{{ uczelnia.nazwa }}</li>
+    {% endfor %}
+</ol>
+{% endblock tresc %}

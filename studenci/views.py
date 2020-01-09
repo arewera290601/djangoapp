@@ -5,6 +5,12 @@ from django.contrib import messages
 from studenci.form import StudentLoginForm
 from studenci.form import UczelniaForm, MiastoForm
 from django.urls import reverse
+from django.views.generic import ListView
+from django.views.generic.edit import CreateView
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
+from django.urls import reverse_lazy
+
 
 def index(request):
     #return HttpResponse("Witaj w aplikacji Studenci!")
@@ -48,6 +54,7 @@ def uczelnia(request):
             u.save()
             messages.success(request, "Dane zapisano!")
             # przekierowanie
+
             return redirect(reverse('studenci:uczelnia'))
     else:
         form = UczelniaForm()
@@ -98,3 +105,40 @@ def login2(request):
 
     kontekst = { 'form': form }
     return render(request, 'studenci/login2.html', kontekst)
+
+class ListaUczelni(ListView):
+    model = Uczelnia
+    context_object_name = 'uczelnia'
+    template_name = 'studenci/lista_uczelni.html'
+
+@method_decorator(login_required, name='dispatch')
+class DodajMiasto(CreateView):
+    model = Miasto
+    fields = ('nazwa', 'kod')
+    template_name = 'studenci/miasto_dodaj.html'
+    success_url = reverse_lazy('studenci:miasta_lista')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['miasta'] = Miasto.objects.all()
+        return context
+
+    def form_valid(self, form):
+        messages.success(self.request, "Dodano miasto!")
+        return super().form_valid(form)
+
+@method_decorator(login_required, name='dispatch')
+class DodajUczelnia(CreateView):
+    model = Uczelnia
+    fields = ('nazwa',)
+    template_name = 'studenci/uczelnia_dodaj.html'
+    success_url = reverse_lazy('studenci:uczelnie_lista')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['uczelnia'] = Uczelnia.objects.all()
+        return context
+
+    def form_valid(self, form):
+        messages.success(self.request, "Dodano uczelnię!")
+        return super().form_valid(form)
