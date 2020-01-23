@@ -2,14 +2,15 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from studenci.models import Miasto, Uczelnia
 from django.contrib import messages
-from studenci.form import StudentLoginForm
+from studenci.form import StudentLoginForm, MiastoModelForm
 from studenci.form import UczelniaForm, MiastoForm
 from django.urls import reverse
-from django.views.generic import ListView
-from django.views.generic.edit import CreateView
+from django.views.generic import ListView, DeleteView
+from django.views.generic.edit import CreateView, UpdateView
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
+from django.contrib.messages.views import SuccessMessageMixin
 
 
 def index(request):
@@ -142,3 +143,27 @@ class DodajUczelnia(CreateView):
     def form_valid(self, form):
         messages.success(self.request, "Dodano uczelnię!")
         return super().form_valid(form)
+
+@method_decorator(login_required, name='dispatch')
+class EdytujMiasto(SuccessMessageMixin, UpdateView):
+    model = Miasto
+    form_class= MiastoModelForm
+    template_name = 'studenci/miasto_dodaj.html'
+    success_url = reverse_lazy('studenci:miasta_lista')
+    success_message = 'Zaktualizowano miasto!'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['miasta'] = Miasto.objects.all()
+        return context
+
+class UsunMiasto(DeleteView):
+
+    model = Miasto
+    success_url = reverse_lazy('studenci:miasta_lista')
+    success_message = 'Usunięto miasto!'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['miasta'] = Miasto.objects.all()
+        return context

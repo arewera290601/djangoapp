@@ -14,7 +14,9 @@
 <h2>Lista miast</h2>
 <ol>
     {% for miasto in miasta %}
-        <li>{{ miasto.nazwa }}&nbsp;{{ miasto.kod }}</li>
+        <li>{{ miasto.nazwa }}&nbsp;{{ miasto.kod }}
+            <a href="{% url 'studenci:miasta_edytuj' miasto.id %}" class="btn-sm"> Edytuj </a>
+        </li>
     {% endfor %}
 </ol>
 {% endblock tresc %}
