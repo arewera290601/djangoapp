@@ -15,6 +15,8 @@ urlpatterns = [
     path('uczelnia/', views.uczelnia, name='uczelnia'),
     path('uczelnia/lista', views.ListaUczelni.as_view(), name='uczelnie_lista'),
     path('uczelnia/dodaj', views.DodajUczelnia.as_view(), name='uczelnia_dodaj'),
+    path('uczelnia/edytuj/<int:pk>', views.EdytujUczelnia.as_view(), name='uczelnia_edytuj'),
+    path('uczelnia/usun/<int:pk>', views.UsunUczelnia.as_view(), name='uczelnia_usun'),
     path('login/', views.login, name='login'),
     path('login2/', views.login2, name='login2'),
 

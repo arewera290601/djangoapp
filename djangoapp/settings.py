@@ -34,12 +34,14 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'pizza.apps.PizzaConfig',
     'studenci.apps.StudenciConfig',
+    'ankiety.apps.AnkietyConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -126,3 +128,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'templates'),]
 
 LOGIN_URL = '/loguj/'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

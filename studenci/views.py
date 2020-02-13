@@ -167,3 +167,28 @@ class UsunMiasto(DeleteView):
         context = super().get_context_data(**kwargs)
         context['miasta'] = Miasto.objects.all()
         return context
+
+@method_decorator(login_required, name='dispatch')
+class EdytujUczelnia(SuccessMessageMixin, UpdateView):
+    model = Uczelnia
+    form_class= UczelniaForm
+    template_name = 'studenci/uczelnia_dodaj.html'
+    success_url = reverse_lazy('studenci:lista_uczelni')
+    success_message = 'Zaktualizowano uczelnię!'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['uczelnia'] = Uczelnia.objects.all()
+        return context
+
+class UsunUczelnia(DeleteView):
+
+    model = Uczelnia
+    success_url = reverse_lazy('studenci:lista_uczelni')
+    success_message = 'Usunięto uczelnię!'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['uczelnia'] = Uczelnia.objects.all()
+        return context
+

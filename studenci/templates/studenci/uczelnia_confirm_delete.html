@@ -1,0 +1,17 @@
+{% extends 'szablon.html' %}
+
+{% block naglowek %}Uczelnia{% endblock naglowek %}
+
+{% block tresc %}
+
+<h2>Usuwanie Uczelni</h2>
+    <form  method="POST">
+        <p class="lead">CZy rzeczywiście chcesz usunąć uczelnię:<br>
+            {{  object.nazwa }}?
+        </p>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Usuń">
+    </form>
+{% endblock tresc %}
+
