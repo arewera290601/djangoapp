@@ -27,7 +27,9 @@
                     <a href="{% url 'studenci:uczelnia_dodaj' %}" class="dropdom-item">Utwórz uczelnię</a></br>
                     <a href="{% url 'studenci:login' %}" class="dropdom-item">Logowanie</a></br>
 
+
                 </div>
+
             </li>
             <li class="nav-tem dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button">Pizza</a>
@@ -35,6 +37,14 @@
                     <a href="{% url 'pizza:index' %}" class="dropdom-item">Strona główna</a>
                     <a href="{% url 'pizza:news' %}" class="dropdom-item">Nowości</a>
                     <a href="{% url 'pizza:skladnik_add' %}" class="dropdom-item">Dodaj Składnik</a>
+
+                </div>
+            </li>
+            <li class="nav-tem dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button">Ankiety</a>
+                <div class="dropdown-menu">
+                    <a href="{% url 'ankiety:lista-pytan' %}" class="dropdom-item">Strona główna</a>
+
 
                 </div>
             </li>

@@ -1,0 +1,17 @@
+{% extends 'szablon.html' %}
+{% block tytul %}Lista Pytan {% endblock tytul %}
+
+ {% block naglowek %}Lista Pytań!{% endblock naglowek %}
+{% block tresc %}
+    <ul>
+    {% for p in pytania %}
+        <li class="mb-1">
+        <span class="lead">{{ p }}</span>
+            <br>
+        <span class="float-right">{{ p.kategoria.nazwa }}</span>
+        </li>
+
+    {% endfor %}
+
+    </ul>
+{% endblock tresc %}

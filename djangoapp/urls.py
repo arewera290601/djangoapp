@@ -20,6 +20,7 @@ urlpatterns = [
     path('', include('users.urls')),
     path('pizza/', include('pizza.urls')),
     path('studenci/', include('studenci.urls')),
+    path('ankiety/', include('ankiety.urls')),
     path('admin/', admin.site.urls),
 ]
 
