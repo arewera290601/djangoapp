@@ -22,7 +22,7 @@ class Pizza(models.Model):
         verbose_name_plural = "pizze"
 
 class Skladnik(models.Model):
-    pizze = models.ManyToManyField(Pizza, related_name='skladniki')
+    pizza = models.ManyToManyField(Pizza, related_name='skladniki')
     nazwa = models.CharField('składnik', max_length=30)
     jarski = models.BooleanField(
         'jarski?',
